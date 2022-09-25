@@ -1,6 +1,30 @@
 fn main() {
-    let number = 3;
+    // Rust has three kinds of loops: `loop`, `while` and `for`
 
-    let msg = if number > 5 { "greater than 5" } else { "less than 5" };
-    println!("{msg}");
+    let x = 5;
+    let mut i = 0;
+
+    loop {
+        if i == x {
+            break;
+        }
+
+        println!("again!");
+        i += 1;
+    }
+
+    println!("-----------------------------------------------");
+    
+    i = 0;
+    while i < x {
+        println!("again!");
+        i += 1;
+    }
+    
+    println!("-----------------------------------------------");
+
+    let a = [1, 2, 3, 4, 5];
+    for element in a {
+        println!("value: {element}");
+    }
 }
