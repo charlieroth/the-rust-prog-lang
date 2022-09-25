@@ -1,7 +1,15 @@
 fn main() {
-    print_measurement('a', 42);
+    // Expressions evaluate to a value
+    // 
+    // - Calling a function is an expression
+    // - Calling a macro is an expression
+    // - A new scope block with curly brackets is an expression
+
+    let y = {
+        let x = 3;
+        x + 1
+    };
+
+    println!("y = {y}");
 }
 
-fn print_measurement(label: char, size: i32) {
-    println!("The measurement {label} is {size}");
-}
