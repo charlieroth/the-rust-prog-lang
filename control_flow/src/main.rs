@@ -1,9 +1,9 @@
 fn main() {
     let number = 3;
 
-    if number > 5 {
+    // The condition of an if statement must be a `bool` type
+    // Compilation error otherwise
+    if number {
         println!("greater than 5");
-    } else {
-        println!("less than 5");
     }
 }
