@@ -1,7 +1,7 @@
 fn main() {
-    greeting();
+    greeting(42);
 }
 
-fn greeting() {
-    println!("Hello from functions!");
+fn greeting(x: i32) {
+    println!("Hello {x} from functions!");
 }
