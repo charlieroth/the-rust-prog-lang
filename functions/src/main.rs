@@ -1,7 +1,7 @@
 fn main() {
-    greeting(42);
+    print_measurement('a', 42);
 }
 
-fn greeting(x: i32) {
-    println!("Hello {x} from functions!");
+fn print_measurement(label: char, size: i32) {
+    println!("The measurement {label} is {size}");
 }
