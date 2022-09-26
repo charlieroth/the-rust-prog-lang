@@ -4,5 +4,6 @@ members = [
     "variables",
     "data_types",
     "functions",
-    "control_flow"
+    "control_flow",
+    "ownership"
 ]
