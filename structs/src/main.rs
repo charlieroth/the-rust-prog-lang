@@ -13,7 +13,11 @@ impl Rectangle {
         return self.width > other.width && self.height > other.height;
     }
 
-    // Associated function (no reference to `self`)
+}
+
+// Multiple `impl` blocks
+// - Can be useful when using generic types and traits
+impl Rectangle {
     fn square(size: u32) -> Self {
         Self { width: size, height: size }
     }
@@ -32,7 +36,6 @@ fn main() {
     };
     println!("Can ({:?}) fit ({:?})? {}", r1, r2, r1.can_fit(&r2));
 
-    // Call associated functions with `::fn_name(..)` syntax
     let s = Rectangle::square(10);
     println!("Can ({:?}) fit ({:?})? {}", r1, s, r1.can_fit(&s));
 }
