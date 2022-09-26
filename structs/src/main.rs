@@ -4,11 +4,17 @@ struct Rectangle {
     height: u32
 }
 
+impl Rectangle {
+    fn area(&self) -> u32 {
+        return self.width * self.height;
+    }
+}
+
 fn main() {
     let rectangle = Rectangle {
         width: 30,
         height: 50
     };
 
-    println!("rectangle is {:?}", rectangle);
+    println!("area({:?}) = {}", rectangle, rectangle.area());
 }
