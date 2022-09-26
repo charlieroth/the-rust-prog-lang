@@ -18,3 +18,18 @@ enum Option<T> {
     Some(T),
 }
 ```
+
+### Matches Are Exhaustive
+
+The arms' patterns must cover all possibilities
+
+```
+fn plus_one(n: Option<i32>) -> Option<i32> {
+    match x {
+        // missing `None` case here
+        Some(i) => Some(i + 1),
+    }
+}
+```
+
+### Catch-all Patterns and The _ placeholder
