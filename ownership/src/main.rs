@@ -1,22 +1,20 @@
 fn main() {
-    let s1 = String::from("hello");
-    takes_ownership(s1);
+    let s1 = gives_ownership();
+    println!("s1 = {}", s1);
+    let s2 = String::from("world");
+    let s3 = takes_and_gives(s2);
 
-    // Cannot use s1 here because prev function call
-    // moves ownership
-    // println!("s1 = {}", s1);
-    
-    let x = 42;
-    makes_copy(x);
-    println!("x = {}", x);
+    // compiler error: ownership moved to s3
+    // println!("s2 = {}", s2);
+
+    println!("s3 = {}", s3);
 }
 
-fn takes_ownership(some_str: String) {
-    println!("some_str = {}", some_str);
-    // `some_str` comes into scope and once function is about to return it calls
-    // `drop()` on `some_str`
+fn gives_ownership() -> String {
+    let s = String::from("hello");
+    return s;
 }
 
-fn makes_copy(some_int: i32) {
-    println!("some_int = {}", some_int);
+fn takes_and_gives(s: String) -> String {
+    s
 }
