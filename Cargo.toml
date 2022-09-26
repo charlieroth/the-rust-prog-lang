@@ -5,5 +5,6 @@ members = [
     "data_types",
     "functions",
     "control_flow",
-    "ownership"
+    "ownership",
+    "structs"
 ]
