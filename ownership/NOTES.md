@@ -73,3 +73,10 @@ let r1 = &s;                   // immutable borrow here
 let r2 = &s;                   // borrow here is okay
 let r3 = &mut s;               // compiler error: mutable borrow here
 ```
+
+## Slices
+
+Slices let you reference a contiguous sequence of elements in a collection
+rather than the whole collection
+
+A slice is a kind of reference, so it does not have ownership

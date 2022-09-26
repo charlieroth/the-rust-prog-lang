@@ -1,13 +1,18 @@
 fn main() {
-    // Create mutable variable
-    let mut s1 = String::from("hello");
-    println!("s1: {}", s1);
-    // Pass reference to s1 as a "mutable reference" to allow for mutating
-    // a reference
-    mutate(&mut s1);
-    println!("s1: {}", s1);
+    let full_name = String::from("Charles Thomas Roth");
+    let first = first_name(&full_name);
+    println!("first name: '{}'", first);
 }
 
-fn mutate(s: &mut String) {
-    return s.push_str(", world!");
+fn first_name(name: &String) -> &str {
+    let bytes = name.as_bytes();
+
+    for (i, &item) in bytes.into_iter().enumerate() {
+        // if item is equal to space (as byte)
+        if item == b' ' {
+            return &name[0..i];
+        }
+    }
+
+    return &name[0..name.len()];
 }
