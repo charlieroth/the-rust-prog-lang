@@ -51,3 +51,25 @@ executed and that code may be expensive
 
 Rust won't doesn't allow annotating a type with `Copy` trait if the type, or any
 of it's parts, has implemented the `Drop` trait
+
+## References and Borrowing
+
+A _reference_ is like a pointer. It's address can be followed to access
+the data stored at that address; that data is owned by some other variable
+
+Mutable references have an important restriction:
+- If you have a mutable reference to a value, you can have no other references
+  to that value
+
+The benefit of such a restriction is to address the "data race" problem:
+- Two or more pointers access the same data at the same time
+- At least one of the pointers is being used to write the data
+- There's no mechanism being used to sync access to the data
+
+You cannot have a mutable reference while we have a immutable one to the same value
+```
+let s = String::from("hello");
+let r1 = &s;                   // immutable borrow here
+let r2 = &s;                   // borrow here is okay
+let r3 = &mut s;               // compiler error: mutable borrow here
+```
