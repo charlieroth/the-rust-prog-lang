@@ -7,27 +7,19 @@ struct User {
 }
 
 fn main() {
-    let charlie = User {
-        active: true,
-        username: String::from("charlie"),
-        email: String::from("charlie@email.com"),
-        sign_in_count: 1,
-    };
+    let charlie = build_user(
+        String::from("charlie@email.com"),
+        String::from("charlie")
+    );
     let active_msg = if charlie.active { "is" } else { "is not" };
-    println!("user {} {} active", charlie.username, active_msg);
+    println!("{} {} active", charlie.username, active_msg);
+}
 
-    let mut miranda = User {
+fn build_user(email: String, username: String) -> User {
+    User {
         active: false,
-        username: String::from("miranda"),
-        email: String::from("miranda@email.com"),
+        username,
+        email,
         sign_in_count: 0,
-    };
-
-    let active_msg = if miranda.active { "is" } else { "is not" };
-    println!("user {} {} active", miranda.username, active_msg);
-
-    miranda.active = true;
-
-    let active_msg = if miranda.active { "is" } else { "is not" };
-    println!("user {} {} active", miranda.username, active_msg);
+    }
 }
