@@ -32,4 +32,3 @@ fn plus_one(n: Option<i32>) -> Option<i32> {
 }
 ```
 
-### Catch-all Patterns and The _ placeholder
