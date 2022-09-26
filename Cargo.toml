@@ -7,5 +7,6 @@ members = [
     "control_flow",
     "ownership",
     "structs",
-    "enums_patt_match"
+    "enums_patt_match",
+    "gen_trait_life"
 ]
