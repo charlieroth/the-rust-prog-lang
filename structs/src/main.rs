@@ -7,19 +7,31 @@ struct User {
 }
 
 fn main() {
-    let charlie = build_user(
-        String::from("charlie@email.com"),
-        String::from("charlie")
-    );
+    let charlie = User {
+        active: false,
+        email: String::from("charlie@email.com"),
+        username: String::from("charlie"),
+        sign_in_count: 0,
+    };
+
+    let charlie_active = User {
+        active: true,
+        username: String::from("charlie_active"),
+        ..charlie
+    };
+
     let active_msg = if charlie.active { "is" } else { "is not" };
     println!("{} {} active", charlie.username, active_msg);
-}
+    
+    let active_msg = if charlie_active.active { "is" } else { "is not" };
+    println!("{} {} active", charlie_active.username, active_msg);
 
-fn build_user(email: String, username: String) -> User {
-    User {
-        active: false,
-        username,
-        email,
-        sign_in_count: 0,
-    }
+    // Compiler Error: cannot use `charlie` because ownership was moved to
+    // `charlie_active` with `..` syntax
+    //
+    // let charlie_active = User {
+    //     active: true,
+    //     username: String::from("charlie_active"),
+    //     ..charlie
+    // };
 }
