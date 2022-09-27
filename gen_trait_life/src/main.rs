@@ -15,10 +15,14 @@ impl Summary for Tweet {
     }
 }
 
+fn notify(item: &impl Summary) {
+    println!("Breaking news! {}", item.summarize());
+}
+
 fn main() {
     let t = Tweet { 
         username: String::from("charlie"),
         content: String::from("Just ate a sandwhich"),
     };
-    println!("{}", t.summarize());
+    notify(&t);
 }
