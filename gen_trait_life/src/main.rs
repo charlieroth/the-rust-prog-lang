@@ -1,30 +1,24 @@
 #![allow(dead_code, unused_variables)]
 
-struct Point<T> {
-    x: T,
-    y: T,
+trait Summary {
+    fn summarize(&self) -> String;
 }
 
-// Generics on struct `impl` block
-impl<T> Point<T> {
-    fn x(&self) -> &T {
-        return &self.x;
-    }
-    
-    fn y(&self) -> &T {
-        return &self.y;
-    }
+struct Tweet {
+    username: String,
+    content: String,
 }
 
-// Specify constraints on generic types
-// This implementation is only availble on Point 
-impl Point<f32> {
-    fn distance_from_origin(&self) -> f32 {
-        return (self.x.powi(2) + self.y.powi(2)).sqrt();
+impl Summary for Tweet {
+    fn summarize(&self) -> String {
+        return format!("@{} tweeted '{}'", self.username, self.content);
     }
 }
 
 fn main() {
-    let p1 = Point { x: 4, y: 3 };
-    let p2 = Point { x: 4.0, y: 3.8 };
+    let t = Tweet { 
+        username: String::from("charlie"),
+        content: String::from("Just ate a sandwhich"),
+    };
+    println!("{}", t.summarize());
 }
