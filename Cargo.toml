@@ -8,5 +8,6 @@ members = [
     "ownership",
     "structs",
     "enums_patt_match",
-    "gen_trait_life"
+    "gen_trait_life",
+    "collections"
 ]
