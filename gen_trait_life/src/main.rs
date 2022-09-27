@@ -15,7 +15,9 @@ impl Summary for Tweet {
     }
 }
 
-fn notify<T: Summary>(item: &T) {
+fn notify<T>(item: &T) 
+where T: Summary
+{
     println!("Breaking news! {}", item.summarize());
 }
 
