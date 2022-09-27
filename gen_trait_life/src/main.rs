@@ -1,30 +1,17 @@
 #![allow(dead_code, unused_variables)]
 
-trait Summary {
-    fn summarize(&self) -> String;
-}
-
-struct Tweet {
-    username: String,
-    content: String,
-}
-
-impl Summary for Tweet {
-    fn summarize(&self) -> String {
-        return format!("@{} tweeted '{}'", self.username, self.content);
+fn longest<'a>(s1: &'a str, s2: &'a str) -> &'a str {
+    if s1.len() > s2.len() {
+        return s1;
     }
-}
 
-fn notify<T>(item: &T) 
-where T: Summary
-{
-    println!("Breaking news! {}", item.summarize());
+    return s2;
 }
 
 fn main() {
-    let t = Tweet { 
-        username: String::from("charlie"),
-        content: String::from("Just ate a sandwhich"),
-    };
-    notify(&t);
+    let s1 = String::from("abcd");
+    let s2 = "xyz";
+
+    let result = longest(s1.as_str(), s2);
+    println!("The longest string is {}", result);
 }
