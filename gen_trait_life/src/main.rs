@@ -5,24 +5,26 @@ struct Point<T> {
     y: T,
 }
 
-struct TwoTypePoint<T, U> {
-    x: T,
-    y: U,
+// Generics on struct `impl` block
+impl<T> Point<T> {
+    fn x(&self) -> &T {
+        return &self.x;
+    }
+    
+    fn y(&self) -> &T {
+        return &self.y;
+    }
+}
+
+// Specify constraints on generic types
+// This implementation is only availble on Point 
+impl Point<f32> {
+    fn distance_from_origin(&self) -> f32 {
+        return (self.x.powi(2) + self.y.powi(2)).sqrt();
+    }
 }
 
 fn main() {
-    let integer_point = Point { x: 4, y: 3 };
-    let float_point = Point { x: 4.0, y: 3.8 };
-    let float_integer_point = TwoTypePoint { x: 4.0, y: 3 };
+    let p1 = Point { x: 4, y: 3 };
+    let p2 = Point { x: 4.0, y: 3.8 };
 }
-
-enum Option<T> {
-    Some(T),
-    None,
-}
-
-enum Result<T, E> {
-    Ok(T),
-    Err(E),
-}
-
