@@ -1,25 +1,28 @@
-// Error due to lack of implementation of std::cmp::PartialEq
-// but this is how Generics are used in a function definition
-fn largest<T>(list: &[T]) -> &T {
-    let mut largest = &list[0];
-    
-    for item in list {
-        if item > largest {
-            largest = item;
-        }
-    }
+#![allow(dead_code, unused_variables)]
 
-    return largest;
+struct Point<T> {
+    x: T,
+    y: T,
+}
+
+struct TwoTypePoint<T, U> {
+    x: T,
+    y: U,
 }
 
 fn main() {
-    let list = vec![1, 2, 3, 4, 5];
-    // Notice there is no generic written in function call syntax
-    // Compiler will infer this typing
-    let lrg = largest(&list);
-    println!("The largest number is {}", lrg);
-    
-    let list = vec!['c','h','a','r','l','i','e'];
-    let lrg = largest(&list);
-    println!("The largest number is {}",lrg);
+    let integer_point = Point { x: 4, y: 3 };
+    let float_point = Point { x: 4.0, y: 3.8 };
+    let float_integer_point = TwoTypePoint { x: 4.0, y: 3 };
 }
+
+enum Option<T> {
+    Some(T),
+    None,
+}
+
+enum Result<T, E> {
+    Ok(T),
+    Err(E),
+}
+
