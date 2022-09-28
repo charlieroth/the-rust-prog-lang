@@ -1,19 +1,28 @@
+use std::collections::HashMap;
+
 fn main() {
-    let mut v: Vec<i32> = Vec::new();
-    v.push(1);
-    v.push(2);
-    v.push(3);
-    println!("v: {:?}", v);
+    // instantiate hash map
+    let mut scores = HashMap::new();
+
+    // insert values into hash map
+    scores.insert(String::from("game 01"), 10);
+    scores.insert(String::from("game 02"), 20);
+    println!("scores: {:?}", scores);
+
+    // access value in hash map
+    let game_key = String::from("game 01");
+    let score = scores.get(&game_key).copied().unwrap_or(0);
+    println!("score of game 01 is: {}", score);
     
-    for i in &mut v {
-        *i += 10;
-    }
-    println!("v: {:?}", v);
+    // overwrite value
+    scores.insert(String::from("game 01"), 30);
 
-    let v2 = vec![1, 2, 3];
-    println!("v2: {:?}", v2);
-
-    for i in &v2 {
-        println!("{}", i);
+    // iterate hash map
+    for (k, v) in &scores {
+        println!("{}: {}", k, v);
     }
+
+    // add k/v only if key is not present
+    scores.entry(String::from("game 03")).or_insert(90);
+    println!("scores: {:?}", scores);
 }
