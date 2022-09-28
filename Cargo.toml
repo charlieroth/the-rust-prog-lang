@@ -9,5 +9,6 @@ members = [
     "structs",
     "enums_patt_match",
     "gen_trait_life",
-    "collections"
+    "collections",
+    "error_handling"
 ]
