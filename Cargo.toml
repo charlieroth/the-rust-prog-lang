@@ -11,5 +11,6 @@ members = [
     "gen_trait_life",
     "collections",
     "error_handling",
-    "testing"
+    "testing",
+    "minigrep"
 ]
