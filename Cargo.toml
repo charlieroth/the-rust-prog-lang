@@ -10,5 +10,6 @@ members = [
     "enums_patt_match",
     "gen_trait_life",
     "collections",
-    "error_handling"
+    "error_handling",
+    "testing"
 ]
