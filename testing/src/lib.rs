@@ -8,8 +8,12 @@ struct Rectangle {
 }
 
 impl Rectangle {
-    fn can_hold(&self, other: &Rectangle) -> bool {
-        return self.h > other.h && self.w > other.w
+    fn can_hold(&self, other: &Rectangle) -> Result<(), String> {
+        if self.h > other.h && self.w > other.w {
+            Ok(())
+        } else {
+            Err(String::from("the rectangle passed in is too big"))
+        }
     }
 }
 
@@ -23,16 +27,16 @@ mod tests {
     }
     
     #[test]
-    fn can_hold() {
+    fn can_hold() -> Result<(), String> {
         let r1 = Rectangle { h: 10, w: 10 };
         let r2 = Rectangle { h: 3, w: 3 };
-        assert_eq!(r1.can_hold(&r2), true);
+        return r1.can_hold(&r2);
     }
     
     #[test]
-    fn cannot_hold() {
+    fn cannot_hold() -> Result<(), String> {
         let r1 = Rectangle { h: 10, w: 10 };
         let r2 = Rectangle { h: 3, w: 3 };
-        assert_eq!(r2.can_hold(&r1), false);
+        return r2.can_hold(&r1);
     }
 }
