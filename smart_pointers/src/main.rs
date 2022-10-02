@@ -14,8 +14,29 @@ impl<T> Deref for MyBox<T> {
     }
 }
 
+struct CustomSmartPointer {
+    data: String,
+}
+
+impl Drop for CustomSmartPointer {
+    fn drop(&mut self) {
+        println!("dropping CustomSmartPointer with data `{}`!", self.data);
+    }
+}
+
 fn main() {
-    let a = 5;
-    let b = MyBox::new(a);
-    println!("b = {}", *b);
+    // Deref coercion can convert `&String` to `&str` because String 
+    // implements the Deref trait such that it returns `&str`
+    let name = MyBox::new(String::from("Charlie"));
+    hello(&name);
+
+    let name = CustomSmartPointer {
+        data: String::from("Charlie")
+    };
+    println!("name: {}", name.data);
+    println!("CustomSmartPointer created.");
+}
+
+fn hello(name: &str) {
+    println!("hello, {}!", name);
 }
