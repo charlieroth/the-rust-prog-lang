@@ -9,9 +9,6 @@ fn main() {
     // on the `Iter<T>` trait
     //
     // Calculate sum of `v` via a loop
-    let mut sum = 0;
-    for x in v_iter {
-        sum += x;
-    }
+    let sum: i32 = v_iter.sum();
     println!("sum: {}", sum); 
 } 
