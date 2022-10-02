@@ -1,7 +1,13 @@
 # Functional Language Features
 
+The implementation of closures and iterators do not effect runtime performance
+
 ## Closures
 
+Anonymous functions that can be saved in a variable or passed as arguments to
+other functions
+
+Can be used to capture the envrionment they're defined in for later use
 
 ## Iterators
 
