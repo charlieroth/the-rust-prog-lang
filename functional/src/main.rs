@@ -2,13 +2,15 @@
 fn main() {
     let v = vec![1, 2, 3, 4];
 
-    // Create an iterator Iter<i32> from Vec<i32>
-    let v_iter = v.iter();
-
     // Iterators can be consumed by loops or other useful methods
     // on the `Iter<T>` trait
     //
-    // Calculate sum of `v` via a loop
-    let sum: i32 = v_iter.sum();
-    println!("sum: {}", sum); 
+    // Calculate sum of `v` via `.reduce(..)`
+    // 
+    // Need to use `into_iter()` to allow for iteration over any of the moved
+    // values (`T`), immutable references, or mutable references
+    let sum = v.into_iter().reduce(|acc, num| {
+        return acc + num;
+    }).unwrap();
+    println!("sum: {}", sum);
 } 
