@@ -1,42 +1,23 @@
-struct MyBox<T>(T);
-
-impl<T> MyBox<T> {
-    fn new(x: T) -> MyBox<T> {
-        return MyBox(x);
-    }
+enum List {
+    Cons(i32, Rc<List>),
+    Nil,
 }
 
-use std::ops::Deref;
-impl<T> Deref for MyBox<T> {
-    type Target = T;
-    fn deref(&self) -> &Self::Target {
-        return &self.0;
-    }
+enum List1 {
+    Cons(i32, Box<List>),
+    Nil,
 }
 
-struct CustomSmartPointer {
-    data: String,
-}
-
-impl Drop for CustomSmartPointer {
-    fn drop(&mut self) {
-        println!("dropping CustomSmartPointer with data `{}`!", self.data);
-    }
-}
+use std::rc::Rc;
 
 fn main() {
-    // Deref coercion can convert `&String` to `&str` because String 
-    // implements the Deref trait such that it returns `&str`
-    let name = MyBox::new(String::from("Charlie"));
-    hello(&name);
-
-    let name = CustomSmartPointer {
-        data: String::from("Charlie")
-    };
-    println!("name: {}", name.data);
-    println!("CustomSmartPointer created.");
-}
-
-fn hello(name: &str) {
-    println!("hello, {}!", name);
+    let a = Rc::new(List::Cons(5, Rc::new(List::Cons(10, Rc::new(List::Nil)))));
+    let b = List::Cons(3, Rc::clone(&a));
+    let c = List::Cons(4, Rc::clone(&a));
+    
+    let a_1 = List1::Cons(5, Box::new(List1::Cons(10, Box::new(List1::Nil))));
+    // `a_1` is moved here
+    let b_1 = List1::Cons(3, Box::new(a_1));
+    // error: attempting to use borrowed value
+    let c_1 = List1::Cons(4, Box::new(a_1));
 }

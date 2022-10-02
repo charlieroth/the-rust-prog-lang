@@ -31,7 +31,17 @@ How they can leak memory and prevention
 
 
 ## `Box<T>`
-
 Store data on the heap rather than stack
 
 No performance overhead other than storage on heap
+
+
+## `Rc<T>`, Reference Counted Smart Pointer
+You have to enable multiple ownership explicitly by using the Rust 
+type `Rc<T>`
+
+Keep track of the number of references to a value to determine whether or 
+not the value is still in use
+
+If zero references to value, value can be cleaned without references becoming
+invalid
